@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>View Food Category</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'admin/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/table.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'admin/images/favicon.png' %}" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_sidebar.html -->
+      {% include 'admin-sidebar.html'%}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_navbar.html -->
+        {%include 'admin-header.html'%}
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Admin Can Use </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/index/">Home</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">FOOD CATEGORY VIEW</h4>
+                    </p>
+                    <div class="search col-lg-12 col-md-12 d-flex">
+                      <select name="search_by" id="search_by" class="d-flex" style="background-color: #2a3038; color: white; border: none;">
+                        <option value="id">Id</option>
+                        <option value="title">Title</option>
+                      </select>
+                      <div class="keyword col-lg-3 col-md-3" style="padding-left: 20px;">
+                        <input type="text" class="form-control" id="search_food_category" placeholder="Type Keyword ...">
+                      </div>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table ">
+                        <thead>
+                          <tr class="row1">
+                            <th> Id </th>
+                            <th> Title </th>
+                            <th> Action </th>
+                          </tr>
+                        </thead>
+                        <tbody id="mydata">
+                          {% for row in food_category_detail %}
+                          <tr class="row2">
+                            
+                            <td> {{row.id}} </td>
+                            <td> {{row.title}} </td>
+                            <td><div class="input3">
+                              <div class="ic">
+                                <a href="/food_category_edit/{{row.id}}" style="text-decoration: none;">
+                                  <button type="button" class="btn btn-primary">EDIT<i class="mdi mdi-eyedropper-variant"></i>
+                                  </button>
+                                </a>
+                              </div>
+                              <div class="name">
+                                <a href="/delete_view_food_category/{{row.id}}" style="text-decoration: none;">
+                                  <button type="button" class="btn btn-danger">DELETE<i class="mdi mdi-delete-sweep"></i>
+                                  </button>
+                                </a>
+                              </div>
+                            </div></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          {% include 'admin-footer.html'%}
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+    <script src="{% static 'admin/jquary/jquery.min.js' %}"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#search_food_category").keyup(function () {
+          var txt = $(this).val();
+          var search_by = $("#search_by").val();
+          console.log(txt);
+          $.ajax({
+            type: "get",
+            url: "/ajax_search_food_category",
+            data: {
+              search_food_category:txt,
+              search_by:search_by
+            },
+            success: function (res) {
+              console.log(res);
+              $("#mydata").html(res);
+            }
+          })
+        })
+        $("#search_by").change(function () {
+          var txt = $('#search_food_category').val();
+          var search_by = $("#search_by").val();
+          console.log(txt);
+          $.ajax({
+            type: "get",
+            url: "/ajax_search_food_category",
+            data: {
+              search_food_category:txt,
+              search_by:search_by
+            },
+            success: function (res) {
+              console.log(res);
+              $("#mydata").html(res);
+            }
+          })
+        })
+      })
+    </script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+    <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'admin/js/misc.js' %}"></script>
+    <script src="{% static 'admin/js/settings.js' %}"></script>
+    <script src="{% static 'admin/js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>

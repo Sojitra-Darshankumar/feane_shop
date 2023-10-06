@@ -1,0 +1,64 @@
+.row1
+{
+    text-align: center;
+}
+.row2
+{
+    color: white;
+    text-align: center;
+}
+
+.input3
+{
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+    /* top: 490px; */
+    /* left: 50px; */
+    /* margin-top: 30px; */
+    color: white;
+    font-weight: 70px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-left: 150px; */
+}
+.input3 .name button
+{
+    padding-left: 20px;
+    width: 170px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-family: clibri; */
+    /* font-size: 27px; */
+    /* font-weight: 5px; */
+}
+.input3 .name button i
+{
+    font-size: 20px;
+    padding-left: 10px;
+}
+.input3 .ic
+{
+    padding-right: 20px;
+}
+.input3 .ic button
+{
+    padding-left: 20px;
+    width: 170px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-family: clibri; */
+    /* font-size: 27px; */
+    /* font-weight: 5px; */
+}
+.input3 .ic button i
+{
+    font-size: 20px;
+    padding-left: 10px;
+}
